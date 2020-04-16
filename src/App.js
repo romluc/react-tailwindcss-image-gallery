@@ -1,41 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import ImageCard from './components/ImageCard';
 
 function App() {
+  const [images, setImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [term, setTerm] = useState('');
+
+  useEffect(() => {
+    let url = `https://pixabay.com/api/?key=${process.env.REACT_APP_PIXABAY_API_KEY}&q=${term}&image_type=photo&pretty=true`;
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setImages(data.hits);
+        setIsLoading(false);
+      })
+      .catch((err) => console.log(err));
+
+    // async function getUserAsync(name)
+    // {
+    //   let response = await fetch(`https://api.github.com/users/${name}`);
+    //   let data = await response.json()
+    //   return data;
+    // }
+    // getUserAsync('yourUsernameHere').then((data) => console.log(data));
+  }, [images, term]);
   return (
-    <div className='max-w-sm rounded overflow-hidden shadow-lg'>
-      <img
-        src='https://source.unsplash.com/random'
-        alt='randomly fetched file from unsplash'
-        className='w-full'
-      />
-      <div className='px-6 py-4'>
-        <div className='font-bold text-teal-600 text-xl'>Photo by John Doe</div>
-        <ul>
-          <li>
-            <strong>Views: </strong>
-            400
-          </li>
-          <li>
-            <strong>Likes: </strong>
-            300
-          </li>
-          <li>
-            <strong>Downloads: </strong>
-            200
-          </li>
-        </ul>
-      </div>
-      <div className='px-6 py-4'>
-        <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'>
-          #tag1
-        </span>
-        <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'>
-          #tag2
-        </span>
-        <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'>
-          #tag3
-        </span>
-      </div>
+    <div className='container mx-auto'>
+      <ImageCard />
     </div>
   );
 }
