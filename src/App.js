@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ImageCard from './components/ImageCard';
+import ImageSearch from './components/ImageSearch';
+import Loading from './components/Loading';
 
 function App() {
   const [images, setImages] = useState([]);
@@ -32,11 +34,16 @@ function App() {
   return (
     <div className='w-screen bg-gray-800'>
       <div className='container mx-auto py-4'>
-        <div className='grid grid-cols-3 gap-4'>
-          {images.map((image) => (
-            <ImageCard key={image.id} image={image} />
-          ))}
-        </div>
+        <ImageSearch />
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <div className='grid grid-cols-3 gap-4'>
+            {images.map((image) => (
+              <ImageCard key={image.id} image={image} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
