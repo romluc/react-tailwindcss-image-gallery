@@ -1,6 +1,7 @@
 import React from 'react';
 
 const ImageCard = ({ image }) => {
+  const tags = image.tags.split(',');
   return (
     <div className='max-w-sm rounded overflow-hidden shadow-lg bg-gray-300'>
       <img
@@ -9,32 +10,30 @@ const ImageCard = ({ image }) => {
         className='w-full'
       />
       <div className='px-6 py-4'>
-        <div className='font-bold text-teal-600 text-xl'>Photo by John Doe</div>
+        <div className='font-bold text-teal-600 text-xl'>
+          Photo by {image.user}
+        </div>
         <ul>
           <li>
             <strong>Views: </strong>
-            400
+            {image.views}
           </li>
           <li>
             <strong>Likes: </strong>
-            300
+            {image.likes}
           </li>
           <li>
             <strong>Downloads: </strong>
-            200
+            {image.downloads}
           </li>
         </ul>
       </div>
       <div className='px-6 py-4'>
-        <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'>
-          #tag1
-        </span>
-        <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'>
-          #tag2
-        </span>
-        <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'>
-          #tag3
-        </span>
+        {tags.map((tag) => (
+          <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'>
+            #{tag}
+          </span>
+        ))}
       </div>
     </div>
   );
