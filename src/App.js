@@ -7,7 +7,7 @@ function App() {
   const [term, setTerm] = useState('');
 
   useEffect(() => {
-    let url = `https://pixabay.com/api/?key=${process.env.REACT_APP_PIXABAY_API_KEY}&q=${term}&image_type=photo&pretty=true`;
+    const url = `https://pixabay.com/api/?key=${process.env.REACT_APP_PIXABAY_API_KEY}&q=${term}&image_type=photo&pretty=true`;
 
     fetch(url)
       .then((res) => res.json())
@@ -17,17 +17,27 @@ function App() {
       })
       .catch((err) => console.log(err));
 
-    // async function getUserAsync(name)
-    // {
-    //   let response = await fetch(`https://api.github.com/users/${name}`);
-    //   let data = await response.json()
-    //   return data;
+    // async function fetchImagesAPI(url) {
+    //   try {
+    //     const response = await fetch(url);
+    //     const data = response.json();
+    //     setImages(data.hits);
+    //     setIsLoading(false);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
     // }
-    // getUserAsync('yourUsernameHere').then((data) => console.log(data));
-  }, [images, term]);
+    // fetchImagesAPI(url);
+  }, [term]);
   return (
-    <div className='container mx-auto'>
-      <ImageCard />
+    <div className='w-screen bg-gray-800'>
+      <div className='container mx-auto py-4'>
+        <div className='grid grid-cols-3 gap-4'>
+          {images.map((image) => (
+            <ImageCard key={image.id} image={image} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

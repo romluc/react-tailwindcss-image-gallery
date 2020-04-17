@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ImageCard = () => {
+const ImageCard = ({ image }) => {
   return (
-    <div className='max-w-sm rounded overflow-hidden shadow-lg'>
+    <div className='max-w-sm rounded overflow-hidden shadow-lg bg-gray-300'>
       <img
-        src='https://source.unsplash.com/random'
+        src={image.webformatURL}
         alt='randomly fetched file from unsplash'
         className='w-full'
       />
