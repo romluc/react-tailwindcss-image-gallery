@@ -3,6 +3,7 @@ import Header from './components/Header';
 import ImageCard from './components/ImageCard';
 import ImageSearch from './components/ImageSearch';
 import Loading from './components/Loading';
+import Empty from './components/Empty';
 
 function App() {
   const [images, setImages] = useState([]);
@@ -26,6 +27,8 @@ function App() {
       <div className='w-screen bg-gray-800'>
         <div className='container mx-auto py-4'>
           <ImageSearch searchText={(text) => setTerm(text)} />
+
+          {!isLoading && images.length === 0 && <Empty />}
           {isLoading ? (
             <Loading />
           ) : (
