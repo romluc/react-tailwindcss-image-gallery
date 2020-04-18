@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Header from './components/Header';
 import ImageCard from './components/ImageCard';
 import ImageSearch from './components/ImageSearch';
 import Loading from './components/Loading';
@@ -18,34 +19,25 @@ function App() {
         setIsLoading(false);
       })
       .catch((err) => console.log(err));
-
-    // async function fetchImagesAPI(url) {
-    //   try {
-    //     const response = await fetch(url);
-    //     const data = response.json();
-    //     setImages(data.hits);
-    //     setIsLoading(false);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // }
-    // fetchImagesAPI(url);
   }, [term]);
   return (
-    <div className='w-screen bg-gray-800'>
-      <div className='container mx-auto py-4'>
-        <ImageSearch />
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <div className='grid grid-cols-3 gap-4'>
-            {images.map((image) => (
-              <ImageCard key={image.id} image={image} />
-            ))}
-          </div>
-        )}
+    <>
+      <Header />
+      <div className='w-screen bg-gray-800'>
+        <div className='container mx-auto py-4'>
+          <ImageSearch searchText={(text) => setTerm(text)} />
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <div className='grid grid-cols-3 gap-4'>
+              {images.map((image) => (
+                <ImageCard key={image.id} image={image} />
+              ))}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
