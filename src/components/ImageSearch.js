@@ -8,7 +8,7 @@ const ImageSearch = ({ searchText }) => {
     searchText(term);
   };
   return (
-    <div className='max-w-sm rounde overflow-hidden my-12 mx-auto'>
+    <div className='max-w-sm rounded overflow-hidden my-12 mx-auto px-4'>
       <form onSubmit={onSubmit} className='w-full max-w-sm'>
         <div className='flex items-center border-b border-b-2 border-teal-500 py-2'>
           <input

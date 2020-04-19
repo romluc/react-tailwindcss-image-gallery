@@ -3,17 +3,17 @@ import React from 'react';
 const ImageCard = ({ image }) => {
   const tags = image.tags.split(',');
   return (
-    <div className='max-w-sm rounded overflow-hidden shadow-lg bg-gray-300'>
+    <div className='max-w-sm rounded overflow-hidden shadow-lg bg-gray-300 mx-auto'>
       <img
         src={image.webformatURL}
         alt='randomly fetched file from unsplash'
         className='w-full'
       />
-      <div className='px-6 py-4'>
-        <div className='font-bold text-teal-600 text-xl'>
+      <div className='flex flex-col px-6 py-4'>
+        <div className='font-bold text-teal-600 text-lg container'>
           Photo by {image.user}
         </div>
-        <ul>
+        <ul className='text-sm'>
           <li>
             <strong>Views: </strong>
             {image.views}
@@ -28,7 +28,7 @@ const ImageCard = ({ image }) => {
           </li>
         </ul>
       </div>
-      <div className='px-6 py-4'>
+      <div className='px-6 py-4 text-xs'>
         {tags.map((tag, index) => (
           <span
             key={index}
