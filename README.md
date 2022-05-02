@@ -1,7 +1,5 @@
 # Pixabay image gallery :camera:
 
-## Project built based on Traversy's tutorial - https://www.youtube.com/watch?v=FiGmAI5e91M&t=72s
-
 ## Check it out: https://romluc-pixabay-tailwind-react-gallery.netlify.app/
 
 ## Features:
@@ -9,7 +7,7 @@
 - React
 - Tailwind CSS
 - Pixabay API
-- RWD
+- Responsive web design
 
 ## Images: 
 
